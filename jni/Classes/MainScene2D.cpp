@@ -392,7 +392,7 @@ void MainScene2D::gameOver(Sprite* sp)
     
     particle = ParticleSystemQuad::create("huochai.plist");
     particle->setPosition(sp->getPosition());
-    _gameLayer->addChild(particle);
+    _gameLayer->addChild(particle,101);
     parSp = sp;
     schedule(CC_SCHEDULE_SELECTOR(MainScene2D::updateParticle));
 }
@@ -838,6 +838,7 @@ void MainScene2D::touchEvent(Ref *pSender, Widget::TouchEventType type)
                 if(node)
                     node->removeFromParent();
                 fenxiang(2);
+                startGame(nullptr);
             }
             break;
             

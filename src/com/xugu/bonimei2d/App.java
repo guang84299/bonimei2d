@@ -23,7 +23,7 @@ public class App extends Application {
         //新浪微博
         //PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad");
         
-        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setQQZone("1105493910", "1Hp8c0kEzTR1ZeLo");
  
     }
 }
