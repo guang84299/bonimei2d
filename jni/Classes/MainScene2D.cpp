@@ -116,15 +116,17 @@ bool MainScene2D::init()
         diban->addChild(btn);
         btn->setName("help");
 
-        
-        // menu for debug layer
-        MenuItemFont::setFontSize(18);
-        auto item = MenuItemFont::create("Toggle debug", CC_CALLBACK_1(MainScene2D::toggleDebug, this));
-        item->setAnchorPoint(Vec2(0,0.5));
-        auto menu = Menu::create(item, nullptr);
-        menu->setAnchorPoint(Vec2(0,0.5));
-        menu->setPosition(Vec2(10, 500));
-        uilayer->addChild(menu);
+        if(Director::getInstance()->isDisplayStats())
+        {
+            // menu for debug layer
+            MenuItemFont::setFontSize(18);
+            auto item = MenuItemFont::create("Toggle debug", CC_CALLBACK_1(MainScene2D::toggleDebug, this));
+            item->setAnchorPoint(Vec2(0,0.5));
+            auto menu = Menu::create(item, nullptr);
+            menu->setAnchorPoint(Vec2(0,0.5));
+            menu->setPosition(Vec2(10, 500));
+            uilayer->addChild(menu);
+        }
         
         Label * label = Label::createWithSystemFont("", "", 38);
         label->setPosition(size.width/2, size.height*0.6f);
@@ -132,7 +134,7 @@ bool MainScene2D::init()
         label->setOpacity(0);
         label->setName("label");
         
-        l_score = Label::createWithSystemFont("score:0", "", 28);
+        l_score = Label::createWithSystemFont("", "", 28);
         l_score->setAnchorPoint(Vec2(1,1));
         l_score->setPosition(size.width-10, size.height-10);
         uilayer->addChild(l_score,100);
@@ -241,7 +243,7 @@ void MainScene2D::update(float dt)
                 score += 1;
                 char c[8];
                 sprintf(c, "%i", score);
-                std::string s = std::string("score:")+c;
+                std::string s = v_font.at(7).asString()+c;
                 l_score->setString(s);
                 
                 int sco =  UserDefault::getInstance()->getIntegerForKey("score");
@@ -499,7 +501,8 @@ void MainScene2D::startGame(Ref *sender)
     sel = nullptr;
     score = 0;
     dt_stop = 0;
-    l_score->setString("score:0");
+    
+    l_score->setString(v_font.at(7).asString()+"0");
     
     preInit();
 }
