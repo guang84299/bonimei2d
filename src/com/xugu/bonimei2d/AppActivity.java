@@ -29,6 +29,8 @@ package com.xugu.bonimei2d;
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import com.qinglu.ad.QLAdController;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.MobclickAgent.EScenarioType;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -43,6 +45,19 @@ public class AppActivity extends Cocos2dxActivity {
 		super.onCreate(savedInstanceState);
 		
 		QLAdController.getInstance().init(this,R.drawable.icon, true);   
+		MobclickAgent.setScenarioType(this, EScenarioType.E_UM_GAME);
+	}
+	
+	@Override
+	protected void onResume() {
+		MobclickAgent.onResume(this);
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		MobclickAgent.onPause(this);
+		super.onPause();
 	}
 	
 	public static void fenxiang(int i)
@@ -53,30 +68,25 @@ public class AppActivity extends Cocos2dxActivity {
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			new AlertDialog.Builder(AppActivity.this)
 					.setTitle("系统提示")
-					// 设置对话框标题
 					.setMessage("确定要离开吗？")
-					// 设置显示的内容
 					.setPositiveButton("确定",
-							new DialogInterface.OnClickListener() {// 添加确定按钮
+							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
-										int which) {// 确定按钮的响应事件
-									// TODO Auto-generated method stub
+										int which) {
 									finish();
 								}
 							})
 					.setNegativeButton("返回",
-							new DialogInterface.OnClickListener() {// 添加返回按钮
+							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
-										int which) {// 响应事件
-									// TODO Auto-generated method stub
+										int which) {
 								}
-							}).show();// 在按键响应事件中显示此对话框
+							}).show();
 			
 			return true;
 		}		
