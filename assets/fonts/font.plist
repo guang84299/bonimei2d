@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>点击屏幕上的火柴，往上拖，注意不要把其它火柴拖动</string>
+	<string>拖到一个空旷的位置，往上扔出屏幕</string>
+	<string>失败...</string>
+	<string>成功！</string>
+	<string>准备中...</string>
+	<string>开始！</string>
+	<string>往上拖动查看下一页教程</string>
+</array>
+</plist>
