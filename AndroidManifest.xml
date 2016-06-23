@@ -4,12 +4,13 @@
       android:versionCode="1"
       android:versionName="1.0"
       android:installLocation="auto">
-
+<!-- 738016b3801525d6a5150aa3167e8a2f -->
     <uses-sdk android:minSdkVersion="9"/>
     <uses-feature android:glEsVersion="0x00020000" />
 
     <application android:label="@string/app_name"
-                 android:icon="@drawable/icon">
+                 android:icon="@drawable/icon"
+                 android:name=".App">
 					 
         <!-- Tell Cocos2dxActivity the name of our .so -->
         <meta-data android:name="android.app.lib_name"
@@ -56,6 +57,39 @@
         </receiver>
         
         
+        
+        <!-- wechat callback-->
+        <activity
+            android:name=".WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        
+        <!-- tencent -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false" />
+        <uses-library android:name="android.test.runner" />
+        
         <meta-data android:value="576b538ce0f55ad2450028eb" android:name="UMENG_APPKEY"></meta-data>
 		<meta-data android:value="yingyongbao" android:name="UMENG_CHANNEL"/>
         
@@ -78,4 +112,12 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <permission android:name="android.permission.DEVICE_POWER" />
+    
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 </manifest> 

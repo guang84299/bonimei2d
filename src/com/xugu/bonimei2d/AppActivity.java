@@ -31,18 +31,25 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 public class AppActivity extends Cocos2dxActivity {
-	
+	static Activity activity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activity = this;
 		
 		QLAdController.getInstance().init(this,R.drawable.icon, true);   
 		MobclickAgent.setScenarioType(this, EScenarioType.E_UM_GAME);
@@ -62,7 +69,12 @@ public class AppActivity extends Cocos2dxActivity {
 	
 	public static void fenxiang(int i)
 	{
-		Log.e("----------","fenxiang="+i);
+		activity.runOnUiThread(new Runnable() {		 
+		    @Override
+		    public void run() {
+		    	share();
+		    }
+		});
 	}
 	
 	
@@ -94,4 +106,42 @@ public class AppActivity extends Cocos2dxActivity {
 		
 	}
 
+	
+	public static void share()
+	{
+		UMImage image = new UMImage(activity, "http://120.25.87.115/images/others/bonimei2d-icon.png");
+
+        String url = "http://120.25.87.115/apks/bonimei2d.apk";
+        
+        new ShareAction(activity).setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)        
+        .withMedia(image)
+        .withTitle("拨你妹")
+        .withText("带你重回一次小时候！！！")
+        .withTargetUrl(url)
+        .setCallback(umShareListener)
+        .open();
+       
+	}
+	
+	private static UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat","platform"+platform);
+            if(platform.name().equals("WEIXIN_FAVORITE")){
+                Toast.makeText(activity,platform + " 收藏成功啦",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(activity, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(activity,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(activity,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
