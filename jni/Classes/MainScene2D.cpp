@@ -385,6 +385,7 @@ void MainScene2D::gameWin()
 
 void MainScene2D::gameOver(Sprite* sp)
 {
+    playSound("die.wav");
     isStart = false;
     sp->runAction(Sequence::create(TintTo::create(0.2f, 0, 0, 0), NULL));
     
@@ -1116,7 +1117,7 @@ void HomeScene::touchEvent(Ref *pSender, Widget::TouchEventType type)
             }
             else if(name == "fankui")
             {
-                
+                MainScene2D::fankui();
             }
             else if(name == "fenxiang")
             {
@@ -1184,6 +1185,22 @@ void MainScene2D::fenxiang(int f)
         methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, f);
     }
 #endif
+}
+
+void MainScene2D::fankui()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    JniMethodInfo methodInfo;
+    if (! JniHelper::getStaticMethodInfo(methodInfo, "com/xugu/bonimei2d/AppActivity", "fankui","()V"))
+    {
+        CCLOG("%s %d: error to get methodInfo", __FILE__, __LINE__);
+    }
+    else
+    {
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+    }
+#endif
+
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

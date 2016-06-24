@@ -37,7 +37,7 @@ public:
     virtual void onEnter() override;
     
     static void fenxiang(int f);
-    
+    static void fankui();
     
     CREATE_FUNC(MainScene2D);
     
