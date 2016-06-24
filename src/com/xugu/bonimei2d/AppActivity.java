@@ -31,6 +31,8 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
+import com.umeng.fb.ConversationActivity;
+import com.umeng.fb.FeedbackAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -73,6 +75,17 @@ public class AppActivity extends Cocos2dxActivity {
 		    @Override
 		    public void run() {
 		    	share();
+		    }
+		});
+	}
+	
+	public static void fankui()
+	{
+		activity.runOnUiThread(new Runnable() {		 
+		    @Override
+		    public void run() {
+		    	FeedbackAgent agent = new FeedbackAgent(activity);
+		    	agent.startFeedbackActivity();
 		    }
 		});
 	}

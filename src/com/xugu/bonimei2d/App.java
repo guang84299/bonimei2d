@@ -3,7 +3,7 @@ package com.xugu.bonimei2d;
 import android.app.Application;
 import android.os.Bundle;
 
-
+import com.umeng.fb.push.FeedbackPush;
 import com.umeng.socialize.PlatformConfig;
 
 /**
@@ -13,6 +13,7 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+      FeedbackPush.getInstance(this).init(false);
         super.onCreate();
     }
 

@@ -89,6 +89,8 @@
             android:name="com.google.android.maps"
             android:required="false" />
         <uses-library android:name="android.test.runner" />
+        <activity
+        android:name="com.umeng.fb.ConversationActivity"/>
         
         <meta-data android:value="576b538ce0f55ad2450028eb" android:name="UMENG_APPKEY"></meta-data>
 		<meta-data android:value="yingyongbao" android:name="UMENG_CHANNEL"/>
