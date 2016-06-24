@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+       android:background="@android:color/white"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
@@ -11,6 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/umeng_fb_item_height">
 

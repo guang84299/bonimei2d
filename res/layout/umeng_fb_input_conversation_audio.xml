@@ -4,6 +4,7 @@
     android:id="@+id/umeng_fb_input_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+     android:background="@android:color/white"
     android:layout_alignParentBottom="true"
     android:orientation="horizontal">
 

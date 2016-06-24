@@ -4,6 +4,7 @@
     android:id="@+id/umeng_fb_input_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+     android:background="@android:color/white"
     android:layout_alignParentBottom="true"
     android:orientation="horizontal">
 
@@ -80,6 +81,7 @@
                 android:layout_toStartOf="@id/umeng_fb_send_layout"
                 android:background="@null"
                 android:focusable="true"
+                android:textColor="@android:color/background_dark"
                 android:hint="@string/umeng_fb_feedback"
                 android:inputType="textCapSentences|textMultiLine"
                 android:textSize="@dimen/umeng_fb_item_content_size" />
