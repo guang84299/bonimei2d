@@ -25,6 +25,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
+            android:textColor="@android:color/black"
             android:text="@string/umeng_fb_reply_content_default"
             android:textSize="@dimen/umeng_fb_item_content_size" />
 
