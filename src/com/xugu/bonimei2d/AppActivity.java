@@ -148,9 +148,9 @@ public class AppActivity extends Cocos2dxActivity {
 	
 	public static void share(int num)
 	{
-		UMImage image = new UMImage(activity, "http://120.25.87.115/images/others/bonimei2d-icon.png");
+		UMImage image = new UMImage(activity, "http://pp.myapp.com/ma_icon/0/icon_42303229_1467172230/96");
 
-        String url = "http://120.25.87.115/apks/bonimei2d.apk";
+        String url = "http://android.app.qq.com/myapp/detail.htm?apkName=com.xugu.bonimei2d";
         
         new ShareAction(activity).setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)        
         .withMedia(image)
