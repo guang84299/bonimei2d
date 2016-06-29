@@ -128,6 +128,7 @@ public class AppActivity extends Cocos2dxActivity {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									finish();
+									System.exit(0);
 								}
 							})
 					.setNegativeButton("·µ»Ø",
