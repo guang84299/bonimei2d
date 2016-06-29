@@ -4,11 +4,16 @@
 <array>
 	<string>点击屏幕上的火柴，往上拖，注意不要把其它火柴拖动</string>
 	<string>拖到一个空旷的位置，往上扔出屏幕</string>
-	<string>失败...</string>
-	<string>成功！</string>
+	<string>营救失败...</string>
+	<string>大获全胜！</string>
 	<string>准备中...</string>
 	<string>开始！</string>
 	<string>往上拖动查看下一页教程</string>
-	<string>得分：</string>
+	<string>已拯救：</string>
+	<string>关注官方微信公众账号</string>
+	<string>dadouhua008</string>
+	<string>送微信红包</string>
+	<string>微信扫一扫</string>
+	<string>更多疑问请您关注官方公众号：dadouhua008</string>
 </array>
 </plist>

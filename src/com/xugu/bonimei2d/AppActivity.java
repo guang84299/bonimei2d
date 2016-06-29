@@ -27,7 +27,6 @@ THE SOFTWARE.
 package com.xugu.bonimei2d;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
-
 import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
@@ -37,9 +36,11 @@ import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,12 +70,12 @@ public class AppActivity extends Cocos2dxActivity {
 		super.onPause();
 	}
 	
-	public static void fenxiang(int i)
+	public static void fenxiang(final int num)
 	{
 		activity.runOnUiThread(new Runnable() {		 
 		    @Override
 		    public void run() {
-		    	share();
+		    	share(num);
 		    }
 		});
 	}
@@ -86,6 +87,30 @@ public class AppActivity extends Cocos2dxActivity {
 		    public void run() {
 		    	FeedbackAgent agent = new FeedbackAgent(activity);
 		    	agent.startFeedbackActivity();
+		    }
+		});
+	}
+	
+	public static void level_guoguan()
+	{
+		MobclickAgent.onEvent(activity, "level_guoguan");
+	}
+	
+	public static void level_suiji()
+	{
+		MobclickAgent.onEvent(activity, "level_suiji");
+	}
+	
+	@SuppressLint("NewApi")
+	public static void copyStr(final String str)
+	{
+		activity.runOnUiThread(new Runnable() {		 
+		    @Override
+		    public void run() {
+		    	ClipboardManager cmb = (ClipboardManager)activity.getSystemService(activity.CLIPBOARD_SERVICE);  
+				cmb.setPrimaryClip(ClipData.newPlainText(null, str));  
+				
+				Toast.makeText(activity, "已经复制内容到剪切板", 1).show();
 		    }
 		});
 	}
@@ -120,7 +145,7 @@ public class AppActivity extends Cocos2dxActivity {
 	}
 
 	
-	public static void share()
+	public static void share(int num)
 	{
 		UMImage image = new UMImage(activity, "http://120.25.87.115/images/others/bonimei2d-icon.png");
 
@@ -128,8 +153,8 @@ public class AppActivity extends Cocos2dxActivity {
         
         new ShareAction(activity).setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE)        
         .withMedia(image)
-        .withTitle("拨你妹")
-        .withText("带你重回一次小时候！！！")
+        .withTitle("拯救火柴人")
+        .withText("我已拯救"+num+"个火柴人，更多兄弟等你来救！")
         .withTargetUrl(url)
         .setCallback(umShareListener)
         .open();
