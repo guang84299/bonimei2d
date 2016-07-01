@@ -38,6 +38,8 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -121,7 +123,6 @@ public class AppActivity extends Cocos2dxActivity {
 	
 	public static void showAd(final int i)
 	{
-		Log.e("---------------", "showAd="+i);
 		QLAdController.getSpotManager().showSpotAd();
 	}
 	
@@ -193,9 +194,10 @@ public class AppActivity extends Cocos2dxActivity {
             Toast.makeText(activity,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
             sharefailure();
         }
-        
+
         
 	};
+	
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
