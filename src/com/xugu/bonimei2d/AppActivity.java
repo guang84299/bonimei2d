@@ -27,21 +27,25 @@ THE SOFTWARE.
 package com.xugu.bonimei2d;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
+
 import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 import com.umeng.fb.ConversationActivity;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -115,6 +119,12 @@ public class AppActivity extends Cocos2dxActivity {
 		});
 	}
 	
+	public static void showAd(final int i)
+	{
+		Log.e("---------------", "showAd="+i);
+		QLAdController.getSpotManager().showSpotAd();
+	}
+	
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -158,29 +168,39 @@ public class AppActivity extends Cocos2dxActivity {
         .withText("我已拯救"+num+"个火柴人，更多兄弟等你来救！")
         .withTargetUrl(url)
         .setCallback(umShareListener)
-        .open();
-       
+        .open();    
+        
 	}
+	
+	public native static void shareSuccess();
+	public native static void sharefailure();
 	
 	private static UMShareListener umShareListener = new UMShareListener() {
         @Override
-        public void onResult(SHARE_MEDIA platform) {
-            Log.d("plat","platform"+platform);
-            if(platform.name().equals("WEIXIN_FAVORITE")){
-                Toast.makeText(activity,platform + " 收藏成功啦",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(activity, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-            }
+        public void onResult(SHARE_MEDIA platform) {       
+            Toast.makeText(activity, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            shareSuccess();
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
             Toast.makeText(activity,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            sharefailure();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
             Toast.makeText(activity,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            sharefailure();
         }
-    };
+        
+        
+	};
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /** attention to this below ,must add this**/
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 }

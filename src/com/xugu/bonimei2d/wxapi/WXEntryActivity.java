@@ -1,4 +1,4 @@
-package com.xugu.bonimei2d;
+package com.xugu.bonimei2d.wxapi;
 
 
 import com.umeng.socialize.weixin.view.WXCallbackActivity;

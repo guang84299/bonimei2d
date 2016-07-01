@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.xugu.bonimei2d"
-      android:versionCode="1"
-      android:versionName="1.0"
+      android:versionCode="2"
+      android:versionName="1.1"
       android:installLocation="auto">
 <!-- 738016b3801525d6a5150aa3167e8a2f -->
     <uses-sdk android:minSdkVersion="9"/>
@@ -58,13 +58,13 @@
         
         
         
-        <!-- wechat callback-->
+        <!-- wechat callback-->        
         <activity
-            android:name=".WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+		   android:name="com.xugu.bonimei2d.wxapi.WXEntryActivity"
+		   android:theme="@android:style/Theme.Translucent.NoTitleBar"
+		   android:configChanges="keyboardHidden|orientation|screenSize"
+		   android:exported="true"
+		   android:screenOrientation="portrait" />
         
         <!-- tencent -->
         <activity
@@ -77,7 +77,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent1105493910" />
             </intent-filter>
         </activity>
         <activity

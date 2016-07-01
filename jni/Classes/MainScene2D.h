@@ -18,7 +18,7 @@ using namespace cocos2d::ui;
 class MainScene2D : public Scene
 {
 public:
-    
+    static MainScene2D* getInstance();
     virtual bool init() override;
     virtual void update(float delta) override;
     
@@ -38,15 +38,20 @@ public:
     
     static void fenxiang(int f);
     static void fankui();
+    static void level_guoguan();
+    static void level_suiji();
+    static void copyStr(std::string str);
+    static void showAd(int i);
     
     CREATE_FUNC(MainScene2D);
     
-protected:
+public:
     bool onContactBegin(PhysicsContact& contact);
     void toggleDebug(Ref* sender);
     void startGame(Ref* sender);
     void gameOver(Sprite* sp);
     void gameWin();
+    void randZongFen();
     
     void addGameTouchLayer(bool isWin);
     
@@ -61,6 +66,7 @@ protected:
     void createPages();
     void pageViewEvent(Ref *pSender, PageView::EventType type);
     
+    void createHongBao();
     
 protected:
     Layer* _gameLayer;
@@ -80,6 +86,7 @@ protected:
     ParticleSystemQuad* particle;
     
     int score;
+    int zongfen;
     Label* l_score;
     float dt_stop = 0;
     Vec2 lastDir;
