@@ -95,6 +95,24 @@
         <meta-data android:value="576b538ce0f55ad2450028eb" android:name="UMENG_APPKEY"></meta-data>
 		<meta-data android:value="yingyongbao" android:name="UMENG_CHANNEL"/>
         
+		
+		<activity
+		    android:name="net.youmi.android.AdBrowser"
+		    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+		    android:theme="@android:style/Theme.Light.NoTitleBar" >
+		</activity>
+		<service
+		    android:name="net.youmi.android.AdService"
+		    android:exported="false" >
+		</service>
+		<receiver
+		    android:name="net.youmi.android.AdReceiver" >
+		    <intent-filter>
+		        <action android:name="android.intent.action.PACKAGE_ADDED" />
+		        <data android:scheme="package" />
+		    </intent-filter>
+		</receiver>
+		
     </application>
 
     <supports-screens android:anyDensity="true"
@@ -122,4 +140,6 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+   
+
 </manifest> 
