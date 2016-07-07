@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.xugu.bonimei2d"
-      android:versionCode="4"
+      android:versionCode="5"
       android:versionName="1.2"
       android:installLocation="auto">
 <!-- 738016b3801525d6a5150aa3167e8a2f -->

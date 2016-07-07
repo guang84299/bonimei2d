@@ -62,7 +62,7 @@ public class AppActivity extends Cocos2dxActivity {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		
-		QLAdController.getInstance().init(this,R.drawable.icon, true);   
+		 
 		MobclickAgent.setScenarioType(this, EScenarioType.E_UM_GAME);
 		
 		final IQueryUpdateCallback callBack = new IQueryUpdateCallback() {
@@ -71,6 +71,8 @@ public class AppActivity extends Cocos2dxActivity {
 		    }
 		};
 		GameSdk.queryUpdate(this, callBack,true);
+		
+		QLAdController.getInstance().init(this, true);  
 	}
 	
 	@Override
@@ -188,19 +190,19 @@ public class AppActivity extends Cocos2dxActivity {
 	private static UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onResult(SHARE_MEDIA platform) {       
-            Toast.makeText(activity, platform + " 分享成功啦!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, platform + " 分享成功啦!!", Toast.LENGTH_SHORT).show();
             shareSuccess();
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(activity,platform + " 分享失败啦!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,platform + " 分享失败啦!!", Toast.LENGTH_SHORT).show();
             sharefailure();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(activity,platform + " 分享取消了!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,platform + " 分享取消了!!", Toast.LENGTH_SHORT).show();
             sharefailure();
         }
 
