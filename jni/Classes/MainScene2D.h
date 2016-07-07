@@ -100,6 +100,15 @@ public:
     void goHome();
     void touchEvent(Ref *pSender, Widget::TouchEventType type);
     CREATE_FUNC(HomeScene);
+    
+    
+    //解压数据
+    void decData(float);
+    void updateLabel(float);
+    
+private:
+    int _num;
+    cocos2d::Label *label_text;
 };
 
 class TouchLayer : public Layer

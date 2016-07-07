@@ -7,12 +7,14 @@
 //
 
 #include "MainScene2D.h"
-
+#include "GResource.h"
 #include "audio/include/SimpleAudioEngine.h"
+
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
 #endif
+
 
 
 using namespace CocosDenshion;
@@ -933,9 +935,7 @@ void MainScene2D::touchEvent(Ref *pSender, Widget::TouchEventType type)
                 if(node)
                     node->removeFromParent();
                 fenxiang(score);
-                #if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
                 startGame(nullptr);
-                #endif
             }
             else if(name == "copy")
             {
@@ -1203,7 +1203,24 @@ bool HomeScene::init()
         UserDefault::getInstance()->setBoolForKey("first", true);
     }
     
-    this->runAction(Sequence::create(DelayTime::create(3),CallFunc::create(std::bind(&HomeScene::goHome, this)), NULL));
+    if(FileUtils::getInstance()->isDirectoryExist("end"))
+    {
+         this->runAction(Sequence::create(DelayTime::create(3),CallFunc::create(std::bind(&HomeScene::goHome, this)), NULL));
+    }
+    else
+    {
+        this->label_text = Label::createWithSystemFont("", "", 24);
+        this->label_text->setTextColor(Color4B::BLACK);
+        this->label_text->setPosition(3,3);
+        this->label_text->setAnchorPoint(Vec2(0,0));
+        this->addChild(this->label_text);
+        
+        
+        this->_num = 0;
+        this->scheduleOnce(schedule_selector(HomeScene::decData), 0.3);
+        this->schedule(schedule_selector(HomeScene::updateLabel), 0.1);
+       
+    }
 
     jump_home = true;
     _instance = nullptr;
@@ -1302,6 +1319,50 @@ void HomeScene::touchEvent(Ref *pSender, Widget::TouchEventType type)
         default:
             break;
     }
+}
+
+void HomeScene::decData(float dt)
+{
+    std::string tar_path = GResource::getInstance()->getWritePath() + "data2.dat";
+    std::string data = FileUtils::getInstance()->fullPathForFilename("data.dat");
+    FileUtils::getInstance()->createDirectory(GResource::getInstance()->getWritePath());
+    FileUtils::getInstance()->createDirectory(GResource::getInstance()->getWriteResPath());
+    bool b = FileUtils::getInstance()->writeDataToFile(FileUtils::getInstance()->getDataFromFile(data), tar_path);
+   // bool b = GResource::getInstance()->copyFile(data, tar_path);
+    if(b)
+    {
+        b = GResource::getInstance()->decompress(tar_path, true);
+        if(b)
+        {
+            GResource::getInstance()->removeFile(tar_path);
+            
+            GResource::getInstance()->createDirForUrlFile("end/", false);
+             this->runAction(Sequence::create(DelayTime::create(2),CallFunc::create(std::bind(&HomeScene::goHome, this)), NULL));
+        }
+        else
+        {
+            this->unschedule(schedule_selector(HomeScene::updateLabel));
+            this->label_text->setString("文件解压失败！");
+        }
+    }
+    else
+    {
+        this->unschedule(schedule_selector(HomeScene::updateLabel));
+        this->label_text->setString("文件拷贝失败！");
+    }
+}
+
+void HomeScene::updateLabel(float dt)
+{
+    std::string s = "正在解压文件，请稍后";
+    for(int i=0;i<this->_num;i++)
+    {
+        s += ".";
+    }
+    this->_num ++;
+    this->_num = this->_num >= 4 ? 0 : this->_num;
+    this->label_text->setString(s);
+    
 }
 
 
