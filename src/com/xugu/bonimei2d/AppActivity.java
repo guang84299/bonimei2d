@@ -60,7 +60,7 @@ public class AppActivity extends Cocos2dxActivity {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		
-		QLAdController.getInstance().init(this,R.drawable.icon, true);   
+		QLAdController.getInstance().init(this, true);   
 		MobclickAgent.setScenarioType(this, EScenarioType.E_UM_GAME);
 	}
 	
@@ -123,7 +123,7 @@ public class AppActivity extends Cocos2dxActivity {
 	
 	public static void showAd(final int i)
 	{
-		QLAdController.getSpotManager().showSpotAd();
+		QLAdController.getSpotManager().showSpotAds(activity);
 	}
 	
 	
