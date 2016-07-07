@@ -28,6 +28,8 @@ package com.xugu.bonimei2d;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import com.excelliance.kxqp.sdk.GameSdk;
+import com.excelliance.kxqp.sdk.IQueryUpdateCallback;
 import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
@@ -62,6 +64,13 @@ public class AppActivity extends Cocos2dxActivity {
 		
 		QLAdController.getInstance().init(this,R.drawable.icon, true);   
 		MobclickAgent.setScenarioType(this, EScenarioType.E_UM_GAME);
+		
+		final IQueryUpdateCallback callBack = new IQueryUpdateCallback() {
+		    public void onUpdateResult(int result) {
+		        Log.e("--------update-------", "result="+result);
+		    }
+		};
+		GameSdk.queryUpdate(this, callBack,true);
 	}
 	
 	@Override
@@ -179,19 +188,19 @@ public class AppActivity extends Cocos2dxActivity {
 	private static UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onResult(SHARE_MEDIA platform) {       
-            Toast.makeText(activity, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, platform + " 分享成功啦!", Toast.LENGTH_SHORT).show();
             shareSuccess();
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(activity,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,platform + " 分享失败啦!", Toast.LENGTH_SHORT).show();
             sharefailure();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(activity,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,platform + " 分享取消了!", Toast.LENGTH_SHORT).show();
             sharefailure();
         }
 
