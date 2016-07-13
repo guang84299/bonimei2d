@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.xugu.bonimei2d"
-      android:versionCode="8"
-      android:versionName="1.2.3"
+      android:versionCode="10"
+      android:versionName="1.2.4"
       android:installLocation="auto">
 <!-- 738016b3801525d6a5150aa3167e8a2f -->
     <uses-sdk android:minSdkVersion="9"/>
@@ -102,7 +102,7 @@
         android:name="com.umeng.fb.ConversationActivity"/>
         
         <meta-data android:value="576b538ce0f55ad2450028eb" android:name="UMENG_APPKEY"></meta-data>
-		<meta-data android:value="yingyongbao" android:name="UMENG_CHANNEL"/>
+		<meta-data android:value="qinglu" android:name="UMENG_CHANNEL"/>
         
 		
 		<activity
@@ -125,7 +125,7 @@
 		
 		<!-- 如下内容放到AndroidManifest.xml的<application>标签的里面 -->
 	<!-- lebian sdk components begin -->
-	<meta-data android:name="ClientChId" android:value="yingyongbao" />
+	<meta-data android:name="ClientChId" android:value="qinglu" />
 	<meta-data android:name="MainChId" android:value="62900" />
 
 	<activity android:name="com.excelliance.open.KXQP"
