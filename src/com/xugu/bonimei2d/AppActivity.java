@@ -94,7 +94,7 @@ public class AppActivity extends Cocos2dxActivity {
 		activity.runOnUiThread(new Runnable() {		 
 		    @Override
 		    public void run() {
-		    	Toast.makeText(activity, "test!!", 1).show();
+		    	//Toast.makeText(activity, "test!!", 1).show();
 		    }
 		});
 	}
