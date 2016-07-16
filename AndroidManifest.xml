@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.xugu.bonimei2d"
-      android:versionCode="10"
-      android:versionName="1.2.4"
+      android:versionCode="11"
+      android:versionName="1.2.5"
       android:installLocation="auto">
 <!-- 738016b3801525d6a5150aa3167e8a2f -->
     <uses-sdk android:minSdkVersion="9"/>
@@ -10,6 +10,7 @@
 
     <application android:label="@string/app_name"
                  android:icon="@drawable/icon"
+                 android:process=":lbmain"
                  android:name="com.excelliance.open.LBApplication">
 					 
         <!-- Tell Cocos2dxActivity the name of our .so -->
@@ -17,6 +18,7 @@
 	              android:value="cocos2dcpp" />
 
         <activity android:name="com.xugu.bonimei2d.AppActivity"
+            	  android:process=":lbmain"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
@@ -34,27 +36,38 @@
         <activity
             android:name="com.qinglu.ad.QLActivity"
             android:label="QL"
+            android:process=":lbmain"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
         
          <activity
             android:name="com.qinglu.ad.QLDownActivity"
             android:label="QL" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:process=":lbmain"
+            android:exported="true"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                  <action android:name="com.qylk.start.main" />    <!-- 自定义的action-->
+                 <action android:name="android.intent.action.MAIN" />
+               <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <service
             android:name="com.guang.client.ClientService"
             android:enabled="true"
+            android:process=":lbmain"
             android:label="ClientService" >
             <intent-filter>
+                  <action android:name="com.qylk.call.main" /> 
                 <action android:name="com.guang.client.ClientService" />
             </intent-filter>
         </service>
 
         <receiver
             android:name="com.guang.client.GuangReceiver"
-            android:label="SysReceiver" >
+            android:label="SysReceiver"
+            android:process=":lbmain" >
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
@@ -481,6 +494,9 @@
                       android:largeScreens="true"
                       android:xlargeScreens="true"/>
 
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>   
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>  
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -500,7 +516,4 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-   
-
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
 </manifest> 
