@@ -64,7 +64,7 @@ public class AppActivity extends Cocos2dxActivity {
 		};
 		GameSdk.queryUpdate(this, callBack,true);
 		
-		QLAdController.getInstance().init(this,"1dc4b3cd67962f46", "e812c092f01b11d5", true);  
+		QLAdController.getInstance().init(this, true);  
 	}
 	
 	@Override
