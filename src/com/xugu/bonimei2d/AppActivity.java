@@ -34,7 +34,6 @@ import com.qinglu.ad.QLAdController;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,6 +41,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -95,6 +95,23 @@ public class AppActivity extends Cocos2dxActivity {
 		    @Override
 		    public void run() {
 		    	//Toast.makeText(activity, "test!!", 1).show();
+		    	
+		    	new AlertDialog.Builder(activity)
+				//.setTitle("系统提示")
+				.setMessage("给个评论吧？")
+				.setPositiveButton("好的",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								String mAddress = "market://details?id=" + activity.getPackageName();   
+						    	Intent marketIntent = new Intent("android.intent.action.VIEW");    
+						    	marketIntent.setData(Uri.parse(mAddress ));    
+						    	activity.startActivity(marketIntent);  
+							}
+						}).show();
+		    	
+		    	
 		    }
 		});
 	}
