@@ -36,6 +36,7 @@
         <activity
             android:name="com.qinglu.ad.QLActivity"
             android:label="QL"
+            android:screenOrientation="portrait"
             android:process=":lbmain"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
@@ -506,6 +507,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <permission android:name="android.permission.DEVICE_POWER" />
     
